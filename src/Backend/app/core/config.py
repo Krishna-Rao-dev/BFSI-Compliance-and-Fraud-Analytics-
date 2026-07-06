@@ -7,7 +7,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # MongoDB
-    MONGO_URI: str = "mongodb://localhost:27017/"
+    MONGO_URI: str = "mongodb+srv://krishna345542_db_user:sB3bRbmKP74oADrZ@cluster0.9geiqgi.mongodb.net/?appName=Cluster0"
     MONGO_DB: str = "compliance_db"
 
     # JWT
