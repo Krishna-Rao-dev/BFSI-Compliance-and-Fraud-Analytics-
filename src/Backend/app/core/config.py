@@ -32,7 +32,7 @@ class Settings(BaseSettings):
     TESSERACT_CMD: str = r'\usr\bin\tesseract'
 
     # Poppler (Linux default)
-    POPPLER_PATH: str = r"C:\poppler\poppler-25.12.0\Library\bin"
+    POPPLER_PATH: str = r'\usr\bin\pdftoppm'
 
     class Config:
         env_file = ".env"
