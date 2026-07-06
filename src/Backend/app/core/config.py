@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     SANDBOX_AUTH_URL: str = "https://api.sandbox.co.in/authenticate"
 
     # Tesseract
-    TESSERACT_CMD: str = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+        TESSERACT_CMD: str = r'\usr\bin\tesseract'
 
     # Poppler (Linux default)
     POPPLER_PATH: str = r"C:\poppler\poppler-25.12.0\Library\bin"
