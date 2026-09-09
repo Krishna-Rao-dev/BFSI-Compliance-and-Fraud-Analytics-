@@ -13,7 +13,7 @@
                                    │ HTTPS
                                    ▼
                     ┌──────────────────────────────┐
-                    │          AWS S3               │
+                    │          AWS S3              │
                     │                              │
                     │      FRONTEND (React)        │
                     │      Static Web Application  │
@@ -23,10 +23,10 @@
                                    │ HTTP/HTTPS
                                    ▼
               ┌────────────────────────────────────────┐
-              │                 AWS EC2                 │
+              │                 AWS EC2                │
               │                                        │
-              │          BACKEND APPLICATION            │
-              │             FastAPI / Python            │
+              │          BACKEND APPLICATION           │
+              │             FastAPI / Python           │
               │                                        │
               │  ┌──────────────────────────────────┐  │
               │  │             Routers              │  │
@@ -67,7 +67,7 @@
                │                 │                  │
                ▼                 ▼                  ▼
       ┌────────────────┐ ┌────────────────┐ ┌─────────────────┐
-      │   OCR / LLM    │ │   Compliance  │ │  Fraud Analysis │
+      │   OCR / LLM    │ │   Compliance  │ │  Fraud Analysis  │
       │    Engines     │ │    Analysis    │ │                 │
       │                │ │                │ │  Document       │
       │ Extract text   │ │ Document       │ │  verification   │
@@ -81,12 +81,12 @@
                     │       Verification /         │
                     │       Analysis Results       │
                     │                              │
-                    │  • Document Verification    │
+                    │  • Document Verification     │
                     │  • Compliance Status         │
                     │  • Cross-Check Results       │
                     │  • Fraud Detection           │
-                    │  • Risk / Findings            │
-                    │  • Reports / Export           │
+                    │  • Risk / Findings           │
+                    │  • Reports / Export          │
                     └──────────────┬───────────────┘
                                    │
                                    │ API Response
