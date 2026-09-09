@@ -1,8 +1,104 @@
-# Pramanik RegTech 🛡️
+# Pramanik RegTech 
 
 **Pramanik** is a state-of-the-art, AI-powered RegTech platform designed to automate and harden the KYC (Know Your Customer) and regulatory compliance process for Indian businesses. By leveraging a multi-agent orchestration layer, Pramanik transforms messy OCR text from various statutory documents into structured, verified, and audit-ready JSON data.
 
-## ✨ Features
+## Architecture (deployed on aws)
+```text
+
+                    ┌──────────────────────────────┐
+                    │            USER              │
+                    │        Web Browser           │
+                    └──────────────┬───────────────┘
+                                   │
+                                   │ HTTPS
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │          AWS S3               │
+                    │                              │
+                    │      FRONTEND (React)        │
+                    │      Static Web Application  │
+                    └──────────────┬───────────────┘
+                                   │
+                                   │ REST API
+                                   │ HTTP/HTTPS
+                                   ▼
+              ┌────────────────────────────────────────┐
+              │                 AWS EC2                 │
+              │                                        │
+              │          BACKEND APPLICATION            │
+              │             FastAPI / Python            │
+              │                                        │
+              │  ┌──────────────────────────────────┐  │
+              │  │             Routers              │  │
+              │  │                                  │  │
+              │  │  Auth                            │  │
+              │  │  Compliance                      │  │
+              │  │  Fraud                           │  │
+              │  │  Verification                    │  │
+              │  │  Records                         │  │
+              │  │  Sessions                        │  │
+              │  │  Export                          │  │
+              │  └───────────────┬──────────────────┘  │
+              │                  │                     │
+              │                  ▼                     │
+              │  ┌──────────────────────────────────┐  │
+              │  │             Services             │  │
+              │  │                                  │  │
+              │  │  OCR Service                     │  │
+              │  │  Verification Service            │  │
+              │  │  Cross-Check Service             │  │
+              │  │  Fraud Service                   │  │
+              │  │  LLM Service                     │  │
+              │  │  Export Service                  │  │
+              │  └───────────────┬──────────────────┘  │
+              │                  │                     │
+              │                  ▼                     │
+              │  ┌──────────────────────────────────┐  │
+              │  │              Agents              │  │
+              │  │                                  │  │
+              │  │  Document Agents                 │  │
+              │  │  Base Agent                      │  │
+              │  │  Agent Schemas                   │  │
+              │  └───────────────┬──────────────────┘  │
+              │                  │                     │
+              └──────────────────┼─────────────────────┘
+                                 │
+               ┌─────────────────┼──────────────────┐
+               │                 │                  │
+               ▼                 ▼                  ▼
+      ┌────────────────┐ ┌────────────────┐ ┌─────────────────┐
+      │   OCR / LLM    │ │   Compliance  │ │  Fraud Analysis │
+      │    Engines     │ │    Analysis    │ │                 │
+      │                │ │                │ │  Document       │
+      │ Extract text   │ │ Document       │ │  verification   │
+      │ from uploaded  │ │ verification   │ │  + entity       │
+      │ documents      │ │ + cross-check  │ │  analysis       │
+      └───────┬────────┘ └───────┬────────┘ └────────┬────────┘
+              │                  │                   │
+              └──────────────────┼───────────────────┘
+                                 ▼
+                    ┌──────────────────────────────┐
+                    │       Verification /         │
+                    │       Analysis Results       │
+                    │                              │
+                    │  • Document Verification    │
+                    │  • Compliance Status         │
+                    │  • Cross-Check Results       │
+                    │  • Fraud Detection           │
+                    │  • Risk / Findings            │
+                    │  • Reports / Export           │
+                    └──────────────┬───────────────┘
+                                   │
+                                   │ API Response
+                                   ▼
+                    ┌──────────────────────────────┐
+                    │          FRONTEND            │
+                    │         AWS S3               │
+                    │                              │
+                    │  Dashboard / Results / UI    │
+                    └──────────────────────────────┘
+```
+##  Features
 
 - **Automated Document Intelligence**: Specialized agents for extracting data from PAN Cards, GST Certificates, MOA/AOA, LEI Certificates, and Utility Bills.
 - **Agentic Extraction Pipeline**: Uses a multi-step "Prompt → LLM → Parse → Validate" workflow with self-correcting retry logic for high reliability.
@@ -10,7 +106,7 @@
 - **Cross-Document Verification**: Automatically reconciles entity names and identification numbers (PAN, CIN, GSTIN) across multiple document types to detect inconsistencies.
 - **Fraud & Anomaly Detection**: Analyzes legal clauses in MOA/AOA and identifies risk signals or fraudulent patterns in corporate filings.
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### Prerequisites
 - Python 3.9+
@@ -37,11 +133,11 @@
    GROQ_API_KEY = INSERT_KEY_HERE
    ```
 
-## 📊 Document Data Structures (JSON)
+##  Document Data Structures (JSON)
 
 Pramanik uses specialized agents to ensure precise extraction. Below are the core JSON structures for primary compliance documents:
 
-### 🆔 PAN Card (Permanent Account Number)
+### PAN Card (Permanent Account Number)
 ```json
 {
   "pan_number": "ABCDE1234F",
@@ -52,7 +148,7 @@ Pramanik uses specialized agents to ensure precise extraction. Below are the cor
 }
 ```
 
-### 📜 GST Registration Certificate
+### GST Registration Certificate
 ```json
 {
   "gstin": "29ABCDE1234F1Z5",
@@ -69,7 +165,7 @@ Pramanik uses specialized agents to ensure precise extraction. Below are the cor
 }
 ```
 
-### 📑 Memorandum of Association (MOA)
+### Memorandum of Association (MOA)
 ```json
 {
   "company_name": "PRAMANIK TECH SOLUTIONS PRIVATE LIMITED",
@@ -89,7 +185,7 @@ Pramanik uses specialized agents to ensure precise extraction. Below are the cor
 }
 ```
 
-## 💡 Business & Technical Impact
+## Business & Technical Impact
 
 - **95%+ Extraction Accuracy**: By utilizing document-specific heuristic prompts and majority-voting mechanisms for entity reconciliation, Pramanik minimizes manual data entry errors.
 - **Rapid Onboarding**: Reduces KYC processing time from several days to under 5 minutes, allowing financial institutions to onboard corporate clients near-instantaneously.
