@@ -106,6 +106,15 @@
 - **Cross-Document Verification**: Automatically reconciles entity names and identification numbers (PAN, CIN, GSTIN) across multiple document types to detect inconsistencies.
 - **Fraud & Anomaly Detection**: Analyzes legal clauses in MOA/AOA and identifies risk signals or fraudulent patterns in corporate filings.
 
+---
+## Prototype
+
+
+
+https://github.com/user-attachments/assets/4d339b52-b916-4420-8b96-3c8747fb56a0
+
+
+
 ## Setup Instructions
 
 ### Prerequisites
