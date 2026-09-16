@@ -1,6 +1,6 @@
 # Pramanik RegTech 
 
-**Pramanik** is a state-of-the-art, AI-powered RegTech platform designed to automate and harden the KYC (Know Your Customer) and regulatory compliance process for Indian businesses. By leveraging a multi-agent orchestration layer, Pramanik transforms messy OCR text from various statutory documents into structured, verified, and audit-ready JSON data.
+**Pramanik** is an AI-powered RegTech platform designed to automate and harden the KYC (Know Your Customer) and regulatory compliance process for Indian BFSI sector, especially for NBFCs. By leveraging a multi-agent orchestration layer, Pramanik transforms messy OCR text from various statutory documents into structured, verified, and audit-ready JSON data.
 
 ## Architecture (deployed on aws)
 ```text
